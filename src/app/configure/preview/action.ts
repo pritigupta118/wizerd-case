@@ -22,7 +22,7 @@ const user = await getUser()
 if (!user) {
   throw new Error('You need to be logges in')
 }
-console.log(user)
+
 
 const { material, finish } = configuration
 
