@@ -10,7 +10,7 @@ export async function POST(req: Request) {
     const signature = headers().get('stripe-signature')
 
     if (!signature) {
-      return new Response
+      return new Response("Invalid signature", {status: 400})
     }
     const event = stripe.webhooks.constructEvent(
       body, 
