@@ -12,17 +12,20 @@ import { useEffect, useState } from 'react';
 import Confetti from 'react-dom-confetti';
 import { createCheckoutSession } from './action';
 import { useRouter } from 'next/navigation';
-import { error } from 'console';
-import { useToast } from '@/components/ui/use-toast';
-import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs'
-import LoginModel from '@/components/LoginModel';
 
-const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
+import { useToast } from '@/components/ui/use-toast';
+import LoginModel from '@/components/LoginModel';
+import { KindeUser } from '@kinde-oss/kinde-auth-nextjs/types';
+
+const DesignPreview = ({ configuration, user }: { configuration: Configuration ,
+  user: KindeUser | null
+
+}) => {
 
   const router = useRouter()
   const {toast} = useToast()
   const { id } = configuration
-  const { user } = useKindeBrowserClient()
+
 
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false)
   const [showConfetti, setShowConfetti] = useState<boolean>(false)
@@ -58,7 +61,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
     const handleCheckout = () => {
         if (user) {
           //create payment session
-          createPaymentSession({configId: id})
+          createPaymentSession({configId: id, user})
         } else{
           //  need to log in
           

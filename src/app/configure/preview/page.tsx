@@ -1,6 +1,7 @@
 import { db } from "@/db"
 import { notFound } from "next/navigation"
 import DesignPreview from "@/app/configure/preview/DesignPreview"
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 
 interface PageProps{
   searchParams: {
@@ -10,6 +11,8 @@ interface PageProps{
 
 const Page = async({ searchParams }: PageProps) => {
   const {id} = searchParams
+  const { getUser } = getKindeServerSession()
+  const user = await getUser()
 
   if (!id || typeof id !== 'string') {
     return notFound()
@@ -24,7 +27,7 @@ const Page = async({ searchParams }: PageProps) => {
   }
 
   return (
-    <DesignPreview configuration={configuration}/>
+    <DesignPreview configuration={configuration} user={user!}/>
   )
 }
 
