@@ -90,7 +90,7 @@ const OrderReceivedEmail = ({
             </Row>
             <Row>
               <Text style={footer.text}>
-                © CaseCobra, Inc. All Rights Reserved.
+                © WizardCase, Inc. All Rights Reserved.
               </Text>
             </Row>
           </Section>

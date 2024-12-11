@@ -15,7 +15,7 @@ export const formatPrice = (price: number) => {
   return formatter.format(price)
 }
 export function constructMetadata({
-  title = 'WizerdCase - custom high-quality phone cases',
+  title = 'WizardCase - custom high-quality phone cases',
   description = 'Create custom high-quality phone cases in seconds',
   image = '/harry-2.png',
   icons = '/favicon.ico',
